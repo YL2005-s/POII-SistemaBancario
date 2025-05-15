@@ -36,7 +36,7 @@ public class MovementsController extends Controller {
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Cuenta c) {
-                    setText(String.format("Cuenta %d - %s", c.getId(), c.getTipo()));
+                    setText(String.format("Cuenta %d - %s", c.getId(), CuentaUtils.getType(c)));
                 }
                 return this;
             }

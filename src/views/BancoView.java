@@ -12,6 +12,7 @@ public class BancoView extends JPanel implements View {
     private final BancoController bancoController;
 
     private JPanel navigationPanel;
+
     private JTextArea logArea;
 
     private JButton btn_create;

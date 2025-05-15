@@ -67,8 +67,8 @@ public class TransferenceController extends Controller {
                 bancoModel.log(accountModel.updateAccount(destino));
 
                 bancoModel.log("Transferencia exitosa!");
-                bancoModel.log(String.format("%d (%s) - Saldo: %.2f", origen.getId(), origen.getTipo(), origen.getSaldo()));
-                bancoModel.log(String.format("%d (%s) - Saldo: %.2f", destino.getId(), destino.getTipo(), destino.getSaldo())  + "\n");
+                bancoModel.log(String.format("%d (%s) - Saldo: %.2f", origen.getId(), CuentaUtils.getType(origen), origen.getSaldo()));
+                bancoModel.log(String.format("%d (%s) - Saldo: %.2f", destino.getId(), CuentaUtils.getType(destino), destino.getSaldo())  + "\n");
 
                 transferenceView.getCb_origin().repaint();
                 transferenceView.getCb_destination().repaint();
@@ -87,7 +87,7 @@ public class TransferenceController extends Controller {
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Cuenta c) {
-                    setText(String.format("%d (%s) - Saldo: %.2f", c.getId(), c.getTipo(), c.getSaldo()));
+                    setText(String.format("%d (%s) - Saldo: %.2f", c.getId(), CuentaUtils.getType(c), c.getSaldo()));
                 }
                 return this;
             }

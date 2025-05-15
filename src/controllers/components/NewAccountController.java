@@ -6,13 +6,17 @@ import models.BancoModel;
 import models.Cuenta;
 import views.components.NewAccountView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
 
 public class NewAccountController extends Controller {
     private NewAccountView newAccountView;
 
     private final BancoModel bancoModel;
     private final AccountModel accountModel;
+    private final Map<String, Cuenta.Builder> builders = new HashMap<>();
 
     public NewAccountController(BancoModel bancoModel, AccountModel accountModel) {
         this.bancoModel = bancoModel;
@@ -23,6 +27,9 @@ public class NewAccountController extends Controller {
     public void run() {
         newAccountView = new NewAccountView(this);
 
+        builders.put("Ahorro", Cuenta.Builder.cuentaAhorroBuilder());
+        builders.put("Corriente", Cuenta.Builder.cuentaCorrienteBuilder());
+        builders.put("Crédito", Cuenta.Builder.cuentaCreditoBuilder());
         setupViewComponents();
     }
 
@@ -40,12 +47,15 @@ public class NewAccountController extends Controller {
                 double saldo = Double.parseDouble(newAccountView.getTf_saldo().getText());
                 double limit = newAccountView.getTf_limit().getText().isEmpty() ? 0.0 : Double.parseDouble(newAccountView.getTf_limit().getText());
 
-                Cuenta cuenta = new Cuenta.Builder()
-                        .id(new Random(System.currentTimeMillis()).nextInt(1000))
-                        .tipo(type)
-                        .saldo(saldo)
-                        .limite(limit)
-                        .build();
+                Cuenta.Builder builder = builders.get(type);
+                if (builder == null) {
+                    bancoModel.log("Tipo de cuenta no válido: " + type);
+                    return;
+                }
+                builder.saldo(saldo)
+                        .limite(limit);
+                Cuenta cuenta = builder.build();
+
                 String notice = accountModel.saveAccount(cuenta);
                 bancoModel.log(notice);
             } catch (NumberFormatException ex) {
