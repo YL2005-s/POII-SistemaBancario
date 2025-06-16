@@ -16,6 +16,7 @@ public class BancoView extends JPanel implements View {
     private JTextArea logArea;
 
     private JButton btn_create;
+    private JButton btn_accounts;
     private JButton btn_transfer;
     private JButton btn_movements;
     private JButton btn_exit;
@@ -51,11 +52,13 @@ public class BancoView extends JPanel implements View {
 
     private void make_btns() {
         btn_create = new JButton("1. Crear cuenta");
-        btn_transfer = new JButton("2. Realizar transferencia");
-        btn_movements = new JButton("3. Ver movimientos");
-        btn_exit = new JButton("4. Salir");
+        btn_accounts = new JButton("2. Ver cuentas");
+        btn_transfer = new JButton("3. Realizar transferencia");
+        btn_movements = new JButton("4. Ver movimientos");
+        btn_exit = new JButton("5. Salir");
 
         navigationPanel.add(btn_create);
+        navigationPanel.add(btn_accounts);
         navigationPanel.add(btn_transfer);
         navigationPanel.add(btn_movements);
         navigationPanel.add(btn_exit);
@@ -82,6 +85,10 @@ public class BancoView extends JPanel implements View {
 
     public JButton getBtn_create() {
         return btn_create;
+    }
+
+    public JButton getBtn_accounts() {
+        return btn_accounts;
     }
 
     public JButton getBtn_exit() {

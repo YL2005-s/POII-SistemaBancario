@@ -1,7 +1,7 @@
 package views.components;
 
 import controllers.components.MovementsController;
-import models.Cuenta;
+import entities.Cuenta;
 
 import javax.swing.*;
 import java.awt.*;

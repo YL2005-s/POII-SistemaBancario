@@ -1,7 +1,10 @@
 package controllers.components;
 
 import core.Controller;
+import entities.Cuenta;
+import entities.Movimiento;
 import models.*;
+import utilities.CuentaUtils;
 import views.components.MovementsView;
 
 import javax.swing.*;
@@ -62,7 +65,7 @@ public class MovementsController extends Controller {
 
             StringBuilder builder = new StringBuilder();
             builder.append("CLEAR:Movimientos de Cuenta ").append(cuenta.getId()).append(":\n\n");
-            builder.append("Fecha\t\tDescripción\t\tMonto\n");
+            builder.append("Fecha\t\tDescripción\t\t\tMonto\n");
             builder.append("------------------------------------------------------------\n");
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

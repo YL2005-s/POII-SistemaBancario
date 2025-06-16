@@ -1,7 +1,10 @@
 package controllers.components;
 
 import core.Controller;
+import entities.Cuenta;
+import entities.Movimiento;
 import models.*;
+import utilities.CuentaUtils;
 import views.components.TransferenceView;
 
 import javax.swing.*;

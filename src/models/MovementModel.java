@@ -1,14 +1,10 @@
 package models;
 
-import models.repository.impl.AccountRepository;
+import entities.Movimiento;
 import models.repository.impl.MovementRepository;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MovementModel {
     private final MovementRepository repository;

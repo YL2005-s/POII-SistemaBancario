@@ -1,13 +1,10 @@
 package models;
 
+import entities.Cuenta;
 import models.repository.impl.AccountRepository;
 
-import java.io.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class AccountModel {
     private final AccountRepository repository;

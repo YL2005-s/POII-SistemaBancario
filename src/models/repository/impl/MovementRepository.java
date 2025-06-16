@@ -1,6 +1,6 @@
 package models.repository.impl;
 
-import models.Movimiento;
+import entities.Movimiento;
 import models.repository.CRUDRepository;
 
 import java.sql.PreparedStatement;

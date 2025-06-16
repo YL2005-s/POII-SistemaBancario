@@ -3,13 +3,11 @@ package controllers.components;
 import core.Controller;
 import models.AccountModel;
 import models.BancoModel;
-import models.Cuenta;
+import entities.Cuenta;
 import views.components.NewAccountView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-import java.util.function.Function;
 
 public class NewAccountController extends Controller {
     private NewAccountView newAccountView;

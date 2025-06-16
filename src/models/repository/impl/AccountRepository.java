@@ -1,13 +1,11 @@
 package models.repository.impl;
 
-import models.Cuenta;
+import entities.Cuenta;
 import models.repository.CRUDRepository;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AccountRepository extends CRUDRepository<Cuenta> {
 

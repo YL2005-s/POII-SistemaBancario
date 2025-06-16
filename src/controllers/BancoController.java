@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.components.AccountsController;
 import controllers.components.MovementsController;
 import controllers.components.NewAccountController;
 import controllers.components.TransferenceController;
@@ -8,6 +9,7 @@ import models.AccountModel;
 import models.BancoModel;
 import models.MovementModel;
 import views.BancoView;
+import views.components.AccountsView;
 import views.components.MovementsView;
 import views.components.NewAccountView;
 import views.components.TransferenceView;
@@ -22,6 +24,7 @@ public class BancoController extends Controller {
     private final MovementModel movementModel = new MovementModel();
 
     private final NewAccountController newAccountController = new NewAccountController(bancoModel, accountModel);
+    private final AccountsController accountsController = new AccountsController(bancoModel, accountModel);
     private final TransferenceController transferenceController = new TransferenceController(bancoModel, accountModel, movementModel);
     private final MovementsController movementsController = new MovementsController(bancoModel, accountModel, movementModel);
 
@@ -31,6 +34,7 @@ public class BancoController extends Controller {
         loadAllMovements();
 
         newAccountController.run();
+        accountsController.run();
         transferenceController.run();
         movementsController.run();
 
@@ -38,6 +42,7 @@ public class BancoController extends Controller {
 
         addView("BancoView", bancoView);
         addFormView("NewAccountView", getNewAccountView());
+        addFormView("AccountsView", getAccountsView());
         addFormView("TransferenceView", getTransferenceView());
         addFormView("MovementsView", getMovementsView());
 
@@ -62,6 +67,12 @@ public class BancoController extends Controller {
             bancoModel.log("CLEAR:");
         });
 
+        bancoView.getBtn_accounts().addActionListener(e -> {
+            loadView("AccountsView");
+            accountsController.refreshComboBoxes();
+            bancoModel.log("CLEAR:");
+        });
+
         bancoView.getBtn_transfer().addActionListener(e -> {
             loadView("TransferenceView");
             transferenceController.refreshComboBoxes();
@@ -81,6 +92,10 @@ public class BancoController extends Controller {
 
     public NewAccountView getNewAccountView() {
         return newAccountController.getView();
+    }
+
+    public AccountsView getAccountsView() {
+        return accountsController.getView();
     }
 
     public TransferenceView getTransferenceView() {
